@@ -88,7 +88,7 @@ bool panda_output_fasta(
 	size_t it;
 	panda_writer_append_c(writer, '>');
 	panda_writer_append_id(writer, &sequence->name);
-	panda_writer_append(writer, " %f", exp(sequence->quality));
+	panda_writer_append(writer, ";%f", exp(sequence->quality));
 
 	panda_writer_append_c(writer, '\n');
 	for (it = 0; it < sequence->sequence_length; it++) {
@@ -105,7 +105,7 @@ bool panda_output_fastq(
 	size_t it;
 	panda_writer_append_c(writer, '@');
 	panda_writer_append_id(writer, &sequence->name);
-	panda_writer_append(writer, " %f", exp(sequence->quality));
+	panda_writer_append(writer, ";%f", exp(sequence->quality));
 	panda_writer_append_c(writer, '\n');
 	for (it = 0; it < sequence->sequence_length; it++) {
 		panda_writer_append_c(writer, panda_nt_to_ascii(sequence->sequence[it].nt));
